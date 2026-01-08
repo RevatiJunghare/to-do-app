@@ -16,7 +16,6 @@ UserRouter.post('/register',async(req,res)=>{
         return res.status(409).send({'error':'User already exists'})
     }
     bcrypt.hash(payload.password, 5, async(err:any, hash:any)=> {
-        // Store hash in your password DB.
         if(err){
             res.status(400).send({'error':'error while hashing password'})
         }

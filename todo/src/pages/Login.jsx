@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/login", {
+      const res = await fetch("http://localhost:8083/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,9 @@ const Login = () => {
       const data = await res.json();
       if (res.status === 200) {
         alert("Login Successful");
+        localStorage.setItem("token", data.token);
         console.log("Login Successful", data);
+        navigate("/todo")
       }
     } catch (err) {
       console.log("Login Failed", err);
@@ -85,11 +87,7 @@ const Login = () => {
               >
                 Password
               </label>
-              {/* <div className="text-sm">
-          <a href="#" className="font-semibold text-indigo-400 hover:text-indigo-300">
-            Forgot password?
-          </a>
-        </div> */}
+              
             </div>
             <div className="mt-2">
               <input

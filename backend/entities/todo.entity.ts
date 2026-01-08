@@ -1,7 +1,6 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 export enum TaskState {
-    NOTSTARTED = 'not_started',
     PENDING = 'pending',
     COMPLETED = 'completed',
     INPROGRESS = 'inprogress',
@@ -16,13 +15,10 @@ export class TodoEntity{
     @Column({ type: 'varchar'})
     title: String
 
-    @Column({ type: 'varchar'})
-    description: String
-
     @Column({
         type: 'enum',
         enum: TaskState,
-        default: TaskState.NOTSTARTED,
+        default: TaskState.PENDING,
       })
     task_state: TaskState;
 

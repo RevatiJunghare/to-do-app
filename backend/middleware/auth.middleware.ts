@@ -9,7 +9,7 @@ export const authMiddleware = (req:any, res:any, next:any)=>{
         }
         req.decodedToken = decoded
 
-        console.log(decoded) 
+         console.log(decoded) 
         next()
       });
   }catch(err:any){

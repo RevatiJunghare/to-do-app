@@ -20,7 +20,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/signup", {
+      const res = await fetch("http://localhost:8083/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,6 +30,7 @@ const Signup = () => {
       const data = await res.json();
       if (res.status === 200) {
         alert("signup Successful");
+        navigate("/")
         console.log("signup Successful", data);
       }
     } catch (err) {
@@ -108,11 +109,7 @@ const Signup = () => {
               >
                 Password
               </label>
-              {/* <div className="text-sm">
-          <a href="#" className="font-semibold text-indigo-400 hover:text-indigo-300">
-            Forgot password?
-          </a>
-        </div> */}
+              
             </div>
             <div className="mt-2">
               <input

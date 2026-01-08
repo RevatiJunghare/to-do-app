@@ -4,6 +4,8 @@ import cors from 'cors';
 import { UserRouter } from './router/user.router';
 import { authMiddleware } from './middleware/auth.middleware';
 import { TodoRouter } from './router/todo.router';
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
 
@@ -12,14 +14,14 @@ app.use(express.json())
 
 app.use('/user',UserRouter)
 
-app.use(authMiddleware)
+ app.use(authMiddleware)
 app.use("/todo",TodoRouter)
 
 AppDataSource.initialize().then(()=>{
     console.log('server is connected to database')
-    app.listen(process.env.PORT,()=>{
+    app.listen(8083,()=>{
         try{
-         console.log('server is running on port',process.env.PORT)
+         console.log('server is running on port 8083')
         }catch(err){
          console.log('server is not running',err)
         }
