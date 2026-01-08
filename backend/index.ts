@@ -19,9 +19,9 @@ app.use("/todo",TodoRouter)
 
 AppDataSource.initialize().then(()=>{
     console.log('server is connected to database')
-    app.listen(8083,()=>{
+    app.listen(process.env.SERVER_PORT,()=>{
         try{
-         console.log('server is running on port 8083')
+         console.log('server is running on port',process.env.SERVER_PORT)
         }catch(err){
          console.log('server is not running',err)
         }
