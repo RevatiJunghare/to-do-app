@@ -17,11 +17,13 @@ app.use('/user',UserRouter)
  app.use(authMiddleware)
 app.use("/todo",TodoRouter)
 
+const PORT = process.env.SERVER_PORT || 8083
+
 AppDataSource.initialize().then(()=>{
     console.log('server is connected to database')
-    app.listen(process.env.SERVER_PORT,()=>{
+    app.listen(PORT,()=>{
         try{
-         console.log('server is running on port',process.env.SERVER_PORT)
+         console.log('server is running on port',PORT)
         }catch(err){
          console.log('server is not running',err)
         }
