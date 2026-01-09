@@ -16,7 +16,7 @@ const ToDo = ()=> {
   const [totalPages, setTotalPages] = useState(1);
   const [total,setTotal] = useState(0)
   
-  const BASE_URL = import.meta.env.API_BASE_URL;
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     fetchTodos(page,limit);
