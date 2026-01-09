@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Plus, Trash2, Edit2, Check, X } from 'lucide-react';
 
+
 const ToDo = ()=> {
   const [todos, setTodos] = useState([]);
   const [editingId, setEditingId] = useState(null);
@@ -15,6 +16,7 @@ const ToDo = ()=> {
   const [totalPages, setTotalPages] = useState(1);
   const [total,setTotal] = useState(0)
   
+  const BASE_URL = import.meta.env.API_BASE_URL;
 
   useEffect(() => {
     fetchTodos(page,limit);
@@ -33,7 +35,7 @@ const ToDo = ()=> {
     setLoading(true);
     const token = localStorage.getItem("token");
     try{
-        const res = await fetch(`http://localhost:8083/todo/get-todos?page=${page}&limit=${limit}`,{
+        const res = await fetch(`${BASE_URL}/todo/get-todos?page=${page}&limit=${limit}`,{
             method:"GET",
             headers:{
                 "Authorization": `${token}`,
@@ -57,7 +59,7 @@ const ToDo = ()=> {
     if (!todo.title.trim()) return;
     const token = localStorage.getItem("token");
     try{
-        const res = await fetch('http://localhost:8083/todo/create-todo',{
+        const res = await fetch(`${BASE_URL}/todo/create-todo`,{
             method:"POST",
             headers:{
                 "Authorization":`${token}`,
@@ -80,7 +82,7 @@ const ToDo = ()=> {
     const token = localStorage.getItem("token");
     
     try{
-        const res = await fetch(`http://localhost:8083/todo/update-todo/${id}`,{
+        const res = await fetch(`${BASE_URL}/todo/update-todo/${id}`,{
             method:"PUT",
             headers:{
                 "Authorization":`${token}`,
@@ -109,7 +111,7 @@ const updateTodoTitle = async (id, title) => {
     const token = localStorage.getItem("token");
   
     try {
-      const res = await fetch(`http://localhost:8083/todo/update-todo/${id}`, {
+      const res = await fetch(`${BASE_URL}/todo/update-todo/${id}`, {
         method: "PUT",
         headers: {
           "Authorization": `${token}`,
@@ -133,7 +135,7 @@ const updateTodoTitle = async (id, title) => {
     const token = localStorage.getItem("token");
     
     try{
-        const res = await fetch(`http://localhost:8083/todo/delete-todo/${id}`,{
+        const res = await fetch(`${BASE_URL}/todo/delete-todo/${id}`,{
             method:"DELETE",
             headers:{
                 "Authorization":`${token}`,

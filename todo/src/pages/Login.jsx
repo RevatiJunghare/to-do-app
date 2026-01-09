@@ -16,10 +16,12 @@ const Login = () => {
     }));
   };
 
+  const BASE_URL = import.meta.env.API_BASE_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8083/user/login", {
+      const res = await fetch(`${BASE_URL}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
